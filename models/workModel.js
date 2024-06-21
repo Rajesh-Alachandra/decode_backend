@@ -13,7 +13,7 @@ const WorkSchema = new mongoose.Schema({
         path: { type: String },
         mimetype: { type: String }
     }],
-    date: { type: Date },
+    date: { type: String }, // date: { type: Date },
     company: { type: String },
     challenge: { type: String },
     solutions: { type: String },
