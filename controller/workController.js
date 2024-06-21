@@ -7,7 +7,7 @@ exports.createWork = async (req, res) => {
         const work = new Work({
             title,
             description,
-            date: date || null,  // Ensure date is null if not provided
+            date: date || null,
             company,
             challenge,
             solutions,
@@ -20,6 +20,14 @@ exports.createWork = async (req, res) => {
                 path: req.file.path,
                 mimetype: req.file.mimetype
             };
+        }
+
+        if (req.files && req.files.sliderImages) {
+            work.sliderImages = req.files.sliderImages.map(file => ({
+                filename: file.filename,
+                path: file.path,
+                mimetype: file.mimetype
+            }));
         }
 
         await work.save();
@@ -53,7 +61,7 @@ exports.getWorkById = async (req, res) => {
 
 exports.updateWork = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['title', 'description', 'image', 'date', 'company', 'challenge', 'solutions', 'briefs'];
+    const allowedUpdates = ['title', 'description', 'image', 'date', 'company', 'challenge', 'solutions', 'briefs', 'sliderImages'];
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
     if (!isValidOperation) {
@@ -80,12 +88,21 @@ exports.updateWork = async (req, res) => {
             };
         }
 
+        if (req.files && req.files.sliderImages) {
+            work.sliderImages = req.files.sliderImages.map(file => ({
+                filename: file.filename,
+                path: file.path,
+                mimetype: file.mimetype
+            }));
+        }
+
         await work.save();
         res.send(work);
     } catch (error) {
         res.status(400).send(error);
     }
 };
+
 
 exports.deleteWork = async (req, res) => {
     const _id = req.params.id;
