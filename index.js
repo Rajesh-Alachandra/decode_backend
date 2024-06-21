@@ -19,10 +19,6 @@ app.use(cors());
 app.use('/api', workRoutes);
 app.use('/api', userRoutes);
 
-app.get('/', (req, res) => {
-    res.send("Welocome to pornHub");
-});
-
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
