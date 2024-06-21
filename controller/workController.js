@@ -86,3 +86,16 @@ exports.updateWork = async (req, res) => {
         res.status(400).send(error);
     }
 };
+
+exports.deleteWork = async (req, res) => {
+    const _id = req.params.id;
+    try {
+        const work = await Work.findByIdAndDelete(_id);
+        if (!work) {
+            return res.status(404).send({ error: 'Work not found' });
+        }
+        res.send({ message: 'Work deleted successfully' });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};

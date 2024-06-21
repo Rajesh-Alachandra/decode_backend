@@ -14,19 +14,3 @@ router.delete('/works/:id', workController.deleteWork);
 
 module.exports = router;
 
-
-
-
-// const express = require('express');
-// const router = express.Router();
-// const workController = require('../controllers/workController');
-// const auth = require('../middlewares/authMiddleware');
-
-// router.post('/works', auth, workController.createWork);
-// router.get('/works', auth, workController.getAllWorks);
-// router.get('/works/:id', auth, workController.getWorkById);
-// router.patch('/works/:id', auth, workController.updateWork);
-// router.delete('/works/:id', auth, workController.deleteWork);
-
-// module.exports = router;
-
