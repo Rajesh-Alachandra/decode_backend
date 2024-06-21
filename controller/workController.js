@@ -2,10 +2,11 @@ const Work = require('../models/workModel');
 const upload = require('../middlewares/multerMiddleware');
 
 exports.createWork = async (req, res) => {
-    const { title, date, company, challenge, solutions, briefs } = req.body;
+    const { title, description, date, company, challenge, solutions, briefs } = req.body;
     try {
         const work = new Work({
             title,
+            description,
             date,
             company,
             challenge,
@@ -52,7 +53,7 @@ exports.getWorkById = async (req, res) => {
 
 exports.updateWork = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['title', 'image', 'date', 'company', 'challenge', 'solutions', 'briefs'];
+    const allowedUpdates = ['title', "description", 'image', 'date', 'company', 'challenge', 'solutions', 'briefs'];
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
     if (!isValidOperation) {
