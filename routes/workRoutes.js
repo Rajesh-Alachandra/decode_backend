@@ -1,13 +1,12 @@
-//!!!!!!! In workRoutes.js
+// workRoutes.js
 const express = require('express');
 const router = express.Router();
 const workController = require('../controller/workController');
 const upload = require('../middlewares/multerMiddleware');
 
-//!!!!!!! Other route definitions
 router.post('/createWork', upload.fields([
     { name: 'image', maxCount: 1 },
-    { name: 'sliderImages', maxCount: 10 } // Adjust maxCount as needed
+    { name: 'sliderImages', maxCount: 10 }
 ]), workController.createWork);
 
 router.get('/works', workController.getAllWorks);

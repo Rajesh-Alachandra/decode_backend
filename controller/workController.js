@@ -14,14 +14,17 @@ exports.createWork = async (req, res) => {
             briefs
         });
 
-        if (req.file) {
+        // Handle single file upload for image
+        if (req.files && req.files.image) {
+            const image = req.files.image[0];
             work.image = {
-                filename: req.file.filename,
-                path: req.file.path,
-                mimetype: req.file.mimetype
+                filename: image.filename,
+                path: image.path,
+                mimetype: image.mimetype
             };
         }
 
+        // Handle multiple file uploads for sliderImages
         if (req.files && req.files.sliderImages) {
             work.sliderImages = req.files.sliderImages.map(file => ({
                 filename: file.filename,
@@ -80,14 +83,17 @@ exports.updateWork = async (req, res) => {
             }
         });
 
-        if (req.file) {
+        // Handle single file upload for image
+        if (req.files && req.files.image) {
+            const image = req.files.image[0];
             work.image = {
-                filename: req.file.filename,
-                path: req.file.path,
-                mimetype: req.file.mimetype
+                filename: image.filename,
+                path: image.path,
+                mimetype: image.mimetype
             };
         }
 
+        // Handle multiple file uploads for sliderImages
         if (req.files && req.files.sliderImages) {
             work.sliderImages = req.files.sliderImages.map(file => ({
                 filename: file.filename,
