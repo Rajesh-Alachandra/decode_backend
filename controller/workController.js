@@ -14,21 +14,19 @@ exports.createWork = async (req, res) => {
             briefs
         });
 
-        // Handle single file upload for image
         if (req.files && req.files.image) {
             const image = req.files.image[0];
             work.image = {
                 filename: image.filename,
-                path: image.path,
+                path: `/uploads/${image.filename}`,  // Ensure the path is correctly formed
                 mimetype: image.mimetype
             };
         }
 
-        // Handle multiple file uploads for sliderImages
         if (req.files && req.files.sliderImages) {
             work.sliderImages = req.files.sliderImages.map(file => ({
                 filename: file.filename,
-                path: file.path,
+                path: `/uploads/${file.filename}`,  // Ensure the path is correctly formed
                 mimetype: file.mimetype
             }));
         }
@@ -39,6 +37,7 @@ exports.createWork = async (req, res) => {
         res.status(400).send(error);
     }
 };
+
 
 exports.getAllWorks = async (req, res) => {
     try {
