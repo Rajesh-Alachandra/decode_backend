@@ -17,7 +17,8 @@ const WorkSchema = new mongoose.Schema({
     company: { type: String },
     challenge: { type: String },
     solutions: { type: String },
-    briefs: { type: String }
+    briefs: { type: String },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true } // Reference to the Category model
 }, {
     timestamps: true // Adds `createdAt` and `updatedAt` fields
 });
