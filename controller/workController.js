@@ -19,7 +19,7 @@ exports.createWork = async (req, res) => {
             const image = req.files.image[0];
             work.image = {
                 filename: image.filename,
-                path: `${req.protocol}://${req.get('host')}/uploads/${image.filename}`,
+                path: `/uploads/${image.filename}`,
                 mimetype: image.mimetype
             };
         }
@@ -27,7 +27,7 @@ exports.createWork = async (req, res) => {
         if (req.files && req.files.sliderImages) {
             work.sliderImages = req.files.sliderImages.map(file => ({
                 filename: file.filename,
-                path: `${req.protocol}://${req.get('host')}/uploads/${file.filename}`,
+                path: `/uploads/${file.filename}`,
                 mimetype: file.mimetype
             }));
         }
