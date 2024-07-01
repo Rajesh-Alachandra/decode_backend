@@ -19,7 +19,7 @@ exports.createWork = async (req, res) => {
             const image = req.files.image[0];
             work.image = {
                 filename: image.filename,
-                path: `/uploads/${image.filename}`,
+                path: `//uploads/${image.filename}`,
                 mimetype: image.mimetype
             };
         }
@@ -87,7 +87,7 @@ exports.updateWork = async (req, res) => {
             const image = req.files.image[0];
             work.image = {
                 filename: image.filename,
-                path: `/uploads/${image.filename}`,
+                path: `//uploads/${image.filename}`,
                 mimetype: image.mimetype
             };
         }
