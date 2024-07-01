@@ -7,8 +7,7 @@ const workRoutes = require('./routes/workRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
-const port = 3001;;;
-
+const port = 3001;
 
 // Connect to MongoDB
 connectDB();
@@ -17,7 +16,7 @@ connectDB();
 app.use(bodyParser.json());
 
 // CORS Configuration
-const allowedOrigins = ['http://localhost:3000', "http://localhost:3001", 'http://localhost:5173', "https://steady-marzipan-081cef.netlify.app", "https://chipper-eclair-f73ce2.netlify.app"];
+const allowedOrigins = ['http://localhost:3000', "http://localhost:3001", 'http://localhost:5173', "https://steady-marzipan-081cef.netlify.app", "https://chipper-eclair-f73ce2.netlify.app/"];
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin like mobile apps or curl requests
